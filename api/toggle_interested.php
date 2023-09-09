@@ -29,4 +29,13 @@ if (mysqli_num_rows($result_1) > 0) {
         return;
     }
 } else {
-
+    $sql_3 = "INSERT INTO interested_users_properties (user_id, property_id) VALUES ('$user_id', '$property_id')";
+    $result_3 = mysqli_query($conn, $sql_3);
+    if (!$result_3) {
+        echo json_encode(array("success" => false, "message" => "Something went wrong"));
+        return;
+    } else {
+        echo json_encode(array("success" => true, "is_interested" => true, "property_id" => $property_id));
+        return;
+    }
+}
